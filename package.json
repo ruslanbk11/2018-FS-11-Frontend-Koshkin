@@ -1,0 +1,25 @@
+{
+  "name": "2018-fs-11-frontend-koshkin",
+  "version": "1.0.0",
+  "description": "messenger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin.git"
+  },
+  "author": "Ruslan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin/issues"
+  },
+  "homepage": "https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.20.2"
+  }
+}
