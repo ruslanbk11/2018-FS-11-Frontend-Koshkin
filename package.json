@@ -1,14 +1,21 @@
 {
-  "name": "front",
+  "name": "2018-fs-11-frontend-koshkin",
   "version": "1.0.0",
-  "description": "Frontend courses for MIPT",
+  "description": "messenger",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/eslint/bin/eslint.js ./src/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin.git"
+  },
+  "author": "Ruslan",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin/issues"
+  },
+  "homepage": "https://github.com/ruslanbk11/2018-FS-11-Frontend-Koshkin#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.0.0",
@@ -27,14 +34,5 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "eslint-config-airbnb": "^17.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MariaKlimova/front.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/MariaKlimova/front/issues"
-  },
-  "homepage": "https://github.com/MariaKlimova/front#readme"
+  }
 }
