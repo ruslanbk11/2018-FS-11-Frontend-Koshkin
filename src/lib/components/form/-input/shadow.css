@@ -1,0 +1,17 @@
+input {
+	outline: none;
+	font-size: 20px;
+	padding: 16px;
+	border: 0;
+        outline: none;
+        flex-basis: 90%;
+}
+
+input::placeholder {
+	font-size: 20px;
+}
+
+:host {
+	display: inline-block;
+	border: 1px solid rgba(25, 25, 25, 0.32);
+}

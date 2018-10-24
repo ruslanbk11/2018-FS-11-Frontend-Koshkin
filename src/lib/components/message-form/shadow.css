@@ -1,0 +1,38 @@
+form-input {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-around;
+        flex-basis: 10%;
+        order: 0;
+        width: 100%;
+        background: #fbfbfb;
+
+}
+
+form{
+        display:flex;
+        flex-direction:column;
+        height: 100vh;
+        justify-content: flex-end;
+        align-items: flex-end;
+        background: #f0f0f0;
+    
+}
+
+
+.result {
+        display: flex;
+	font-size: 20px;
+        flex-direction: column-reverse;
+        flex-basis: 1%;
+        height: 10%;
+        min-height: min-content;
+        height: fit-content;
+        margin: 20px;
+        max-width: 75%;
+	color: black;
+}
+
+input[type=submit] {
+	visibility: collapse;
+}
