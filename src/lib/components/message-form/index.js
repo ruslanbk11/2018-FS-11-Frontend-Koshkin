@@ -1,4 +1,3 @@
-//import styles from './index.css';
 import shadowStyles from './shadow.css';
 
 const slotName = 'message-input';
@@ -7,9 +6,17 @@ const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
 		<div class="result"></div>
-		<form-input name="message_text" placeholder="Сообщение" slot="message-input">
-			<span slot="icon"></span>
-		</form-input>
+		<span style="display: inline-flex">
+			<form-input name="message_text" placeholder="Сообщение" slot="message-input">
+				<span slot="icon"></span>
+			</form-input>
+			<div id="firsticon" style="align-content: center">
+		        	<i id="1" class="material-icons">send</i>
+		    	</div>
+		        <div id="secondicon" style="align-content: center">
+		        	<i id="secondicon" class="material-icons">attach_file</i>
+            		</div>
+		</span>
 	</form>
 `;
 
@@ -45,13 +52,10 @@ class MessageForm extends HTMLElement {
 	_addHandlers () {
 		this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
 		this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
-		//this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
 	}
 
 	_onSubmit (event) {
-		this._elements.message.innerText = Array.from(this._elements.form.elements).map(
-			el => el.value
-		).join(', ');
+		this._elements.message.innerText = this._elements.form.elements[0].value;
 		event.preventDefault();
 		return false;
 	}
