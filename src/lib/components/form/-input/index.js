@@ -42,10 +42,17 @@ class FormInput extends HTMLElement {
 
 	_addHandlers () {
 		this._elements.input.addEventListener('input', this._onInput.bind(this));
+		this._elements.input.addEventListener('keypress', this._onKeyPress.bind(this));
 	}
 
 	_onInput () {
 		this._elements.hiddenInput.value = this._elements.input.value;
+	}
+	
+	_onKeyPress (event) {
+		if (event.keyCode == 13) {
+			this._elements.input.value = '';
+		}
 	}
 }
 

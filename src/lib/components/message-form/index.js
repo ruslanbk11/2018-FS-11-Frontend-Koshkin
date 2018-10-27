@@ -10,12 +10,12 @@ const template = `
 			<form-input name="message_text" placeholder="Сообщение" slot="message-input">
 				<span slot="icon"></span>
 			</form-input>
+			<div id="secondicon" style="align-content: center">
+		        	<i id="secondicon" class="material-icons">attach_file</i>
+            		</div>
 			<div id="firsticon" style="align-content: center">
 		        	<i id="1" class="material-icons">send</i>
 		    	</div>
-		        <div id="secondicon" style="align-content: center">
-		        	<i id="secondicon" class="material-icons">attach_file</i>
-            		</div>
 		</span>
 	</form>
 `;
