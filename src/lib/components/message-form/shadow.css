@@ -34,15 +34,14 @@ span {
 
 div#attach {
 	display: inline-flex;
-	position: relative;
 	flex-basis: 9%;
-	margin-left: 10%;
+	margin-left: 1%;
 	margin-top: 10px;
 }
 
 i {
 	display: flex;
-	position: relative;
+	justify-content: space-around;
 	flex-basis: 10%;
 }
 
@@ -111,6 +110,7 @@ div[slot=after] > div#send {
 	font: inherit;
 	box-sizing: content-box;
 	display: inline-flex;
+	justify-content: space-around;
 	flex-basis: 9%;
 	margin-left: 1%;
 	margin-top: 10px;
@@ -121,12 +121,13 @@ div[slot=after] > div#send {
 }
 
 .with-message div[slot=after] > div#send {
-	display: block;
+	display: inline-flex;
 }
 
 div[slot=after] {
 	display: flex;
 	justify-content: space-around;
+	width: 20%;
 }
 
 /*div[slot=after] > *:nth-child(0) {
