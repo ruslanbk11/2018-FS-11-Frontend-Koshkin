@@ -8,17 +8,24 @@ const template = `
 		<div class="result"></div>
 		<span style="display: inline-flex">
 			<form-input name="message_text" placeholder="Сообщение" slot="message-input">
-				<span slot="icon"></span>
 			</form-input>
-			<div id="secondicon" style="align-content: center">
-		        	<i id="secondicon" class="material-icons">attach_file</i>
-            		</div>
-			<div id="firsticon" style="align-content: center">
-		        	<i id="1" class="material-icons">send</i>
+			<div slot='before'>
+			</div>
+			<div slot='after'>
+				<div id="attach" style="align-content: center">
+		        		<i id="attach" class="material-icons">attach_file</i>
+            			</div>
+				<div id="send" style="align-content: center">
+		        		<i id="send" class="material-icons">send</i>
+		    		</div>
 		    	</div>
 		</span>
 	</form>
 `;
+
+const stateClasses = {
+	withMessage: 'with-message'
+};
 
 class MessageForm extends HTMLElement {
 	constructor () {
@@ -42,22 +49,42 @@ class MessageForm extends HTMLElement {
 
 	_initElements () {
 		var form = this.shadowRoot.querySelector('form');
-		var message = this.shadowRoot.querySelector('.result');
+		var messages = this.shadowRoot.querySelector('.result');
 		this._elements = {
-			form: form,
-			message: message
+			form,
+			messages
 		};
 	}
 
 	_addHandlers () {
 		this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
 		this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
+		this._elements.form.addEventListener('input', this._onInput.bind(this));
 	}
 
 	_onSubmit (event) {
-		this._elements.message.innerText = this._elements.form.elements[0].value;
+		this._addNewMessage(this._elements.form.elements[0].value);
+		//this._elements.message.innerText = this._elements.form.elements[0].value;
 		event.preventDefault();
+		this._elements.form.classList.remove(stateClasses.withMessage);
 		return false;
+	}
+	
+	_onInput () {
+		if (this._elements.form.elements[0].value.length > 0) {
+			this._elements.form.classList.add(stateClasses.withMessage);
+		} else {
+			this._elements.form.classList.remove(stateClasses.withMessage);
+		}
+	}
+
+	_addNewMessage(message) {
+		let prevListElem = this.shadowRoot.querySelector('li');
+		let listElem = document.createElement('li');
+		console.log(message)
+		listElem.innerHTML = message;
+		this._elements.messages.insertBefore(listElem, prevListElem);
+		this._elements.messages.scrollTop = this._elements.messages.scrollHeight - this._elements.messages.offsetHeight;
 	}
 
 	_onKeyPress (event) {

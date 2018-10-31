@@ -3,8 +3,9 @@ import shadowStyles from './shadow.css';
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
+	<slot name='before' />	
 	<input />
-	<slot name="icon"></slot>
+	<slot name='after'></slot>
 `;
 
 
@@ -47,6 +48,8 @@ class FormInput extends HTMLElement {
 
 	_onInput () {
 		this._elements.hiddenInput.value = this._elements.input.value;
+		this._elements.hiddenInput.dispatchEvent(new InputEvent('input'));
+		this.value = this._elements.input.value;
 	}
 	
 	_onKeyPress (event) {

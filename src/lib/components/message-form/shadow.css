@@ -2,10 +2,19 @@ form-input {
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-around;
-        flex-basis: 80%;
+        flex-basis: 90%;
         order: 0;
         background: #fbfbfb;
 
+}
+
+.with-message form-input {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-around;
+        flex-basis: 80%;
+        order: 0;
+        background: #fbfbfb;
 }
 
 form{
@@ -23,18 +32,11 @@ span {
 	width: 100%;
 }
 
-div#firsticon {
+div#attach {
 	display: inline-flex;
+	position: relative;
 	flex-basis: 9%;
-	margin-left: 1%;
-	margin-top: 10px;
-}
-
-
-div#secondicon {
-	display: inline-flex;
-	flex-basis: 9%;
-	margin-left: 1%;
+	margin-left: 10%;
 	margin-top: 10px;
 }
 
@@ -75,15 +77,58 @@ i {
         display: flex;
 	font-size: 20px;
         flex-direction: column-reverse;
-        flex-basis: 1%;
-        height: 10%;
+        height: calc(100% - 50px);
+        flex-basis: 80%;
+        margin: 20px;
+	color: black;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.result > li {
+	display: flex;
+	border: 1px;
+	border-radius: 5px 5px 0px 5px;
+	border-color: gray;
+	box-shadow: 2px 2px #d3d3d3;
+	background-color: #f3e5f5;
+	font-size: 20px;
+        flex-direction: column-reverse;
         min-height: min-content;
         height: fit-content;
-        margin: 20px;
+        margin: 5px;
         max-width: 75%;
 	color: black;
+	padding: 10px;
 }
 
 input[type=submit] {
 	visibility: collapse;
 }
+
+div[slot=after] > div#send {
+	outline: none;
+	font: inherit;
+	box-sizing: content-box;
+	display: inline-flex;
+	flex-basis: 9%;
+	margin-left: 1%;
+	margin-top: 10px;
+}
+
+div[slot=after] > div#send {
+	display: none;
+}
+
+.with-message div[slot=after] > div#send {
+	display: block;
+}
+
+div[slot=after] {
+	display: flex;
+	justify-content: space-around;
+}
+
+/*div[slot=after] > *:nth-child(0) {
+	margin: 0 0 0 5px;
+}*/
