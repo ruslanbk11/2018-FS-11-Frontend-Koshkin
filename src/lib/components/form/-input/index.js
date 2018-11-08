@@ -3,7 +3,7 @@ import shadowStyles from './shadow.css';
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
-	<slot name='before' />	
+	<slot name='before' />
 	<input />
 	<slot name='after'></slot>
 `;
@@ -28,33 +28,34 @@ class FormInput extends HTMLElement {
 	}
 
 	attributeChangedCallback(attrName, oldVal, newVal) {
-		this._elements.input[attrName] = newVal;
+		this.elements.input[attrName] = newVal;
 	}
 
 	_initElements () {
 		var hiddenInput = document.createElement('input');
 		var input = this.shadowRoot.querySelector('input');
+
 		this.appendChild(hiddenInput);
-		this._elements = {
+		this.elements = {
 			input: input,
 			hiddenInput: hiddenInput
 		};
 	}
 
 	_addHandlers () {
-		this._elements.input.addEventListener('input', this._onInput.bind(this));
-		this._elements.input.addEventListener('keypress', this._onKeyPress.bind(this));
+		this.elements.input.addEventListener('input', this._onInput.bind(this));
+		this.elements.input.addEventListener('keypress', this._onKeyPress.bind(this));
 	}
 
 	_onInput () {
-		this._elements.hiddenInput.value = this._elements.input.value;
-		this._elements.hiddenInput.dispatchEvent(new InputEvent('input'));
-		this.value = this._elements.input.value;
+		this.elements.hiddenInput.value = this.elements.input.value;
+		this.elements.hiddenInput.dispatchEvent(new InputEvent('input'));
+		this.value = this.elements.input.value;
 	}
-	
+
 	_onKeyPress (event) {
 		if (event.keyCode == 13) {
-			this._elements.input.value = '';
+			this.elements.input.value = '';
 		}
 	}
 }
