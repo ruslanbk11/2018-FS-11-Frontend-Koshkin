@@ -1,0 +1,19 @@
+.messageList{
+  width: 100%;
+  list-style: none;
+  top: 56px;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.my{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.not_my{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
