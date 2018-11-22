@@ -17,7 +17,7 @@ class Message extends Component {
   };
 
   render () {
-      const {message} = this.props
+      const message = this.props.message
       const content = message.content
       const author = this.state.isMy || <section className='author'>{message.author}</section>
       const message_class = this.state.isMy ? 'my_message' : 'not_my_message'

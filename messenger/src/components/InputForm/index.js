@@ -12,6 +12,7 @@ class InputForm extends Component{
       count: 0,
       value: ''
     }
+
   }
 
   options = {
@@ -26,46 +27,18 @@ class InputForm extends Component{
     time: ''
   }
 
-  render () {
-    const onNewMessage = this.props.onNewMessage
-    const input_class = this.state.withMessage ? 'input_with_message' : 'input_without'
-    const input = <input type='text' id='input' className={input_class} onInput={this.handleInput} placeholder='Введите сообщение'/>
-    const sendElement = (
-      <div onClick={this.handleClick} className='send'>
-        <img onClick={onNewMessage.bind(this, this.newMessage)} src={sendImg} className='sendImg' alt='send'/>
-      </div>
-    )
-    const send = this.state.withMessage && sendElement
-    return (
-      <form className='form'>
-        {input}
-        <label className='attach' onClick={onNewMessage.bind(this, this.newMessage)}>
-          <label className='invisible'>
-            <input type='file' onSubmit={this.handleSubmit} onChange={this.handleAttach} multiple />
-          </label>
-          <img src={attachImg} className='attachImg' alt='attach' />
-        </label>
-        {send}
-      </form>
-    )
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-  }
-
   handleAttach = (input) => {
     const files = input.target.files
     this.files = []
     for (let i = 0; i< files.length; i++) {
       let file = files[i]
       if (file.type === ('image/png') || file.type === ('image/jpeg') || file.type === ('image/gif')) {
-        this.files.push(<img src={URL.createObjectURL(file)} alt='attached_img'/>)
+        this.files.push(<img key={this.state.count + i} src={URL.createObjectURL(file)} alt='attached_img'/>)
       } else {
-        this.files.push(<a href={URL.createObjectURL(file)}>{file.name}</a>)
+        this.files.push(<a key={this.state.count + i} href={URL.createObjectURL(file)}>{file.name}</a>)
       }
     }
-    this.newMessage = {
+    let newMessage = {
       id: this.state.count,
       author: "Me",
       content: this.files,
@@ -73,7 +46,10 @@ class InputForm extends Component{
       time: (new Date()).toLocaleString('ru', this.options)
     }
     console.log(this.files)
-    this.props.onNewMessage.bind(this, this.newMessage)
+    this.props.onNewMessage(newMessage);
+    this.setState({
+      count: this.state.count + 1 + files.length
+    })
   }
 
   handleClick = () => {
@@ -83,7 +59,8 @@ class InputForm extends Component{
     })
   }
 
-  handleInput = () => {
+  handleInput = (e) => {
+    e.preventDefault();
     var input = document.getElementById('input')
     if (input.value.length > 0){
       this.setState({
@@ -101,6 +78,39 @@ class InputForm extends Component{
       time: (new Date()).toLocaleString('ru', this.options)
     }
 
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onNewMessage(this.newMessage);
+    this.setState({
+      withMessage: false,
+      count: this.state.count + 1
+    })
+  }
+
+  render () {
+    const onNewMessage = this.props.onNewMessage
+    const input_class = this.state.withMessage ? 'input_with_message' : 'input_without'
+    const input = <input type='text' id='input' className={input_class} onInput={this.handleInput} placeholder='Введите сообщение'/>
+    const sendElement = (
+      <div onClick={this.handleClick} className='send'>
+        <img onClick={onNewMessage.bind(this, this.newMessage)} src={sendImg} className='sendImg' alt='send'/>
+      </div>
+    )
+    const send = this.state.withMessage && sendElement
+    return (
+      <form className='form' onSubmit={this.handleSubmit}>
+        {input}
+        <label className='attach' >
+          <label className='invisible'>
+            <input type='file' onChange={this.handleAttach} multiple />
+          </label>
+          <img src={attachImg} className='attachImg' alt='attach' />
+        </label>
+        {send}
+      </form>
+    )
   }
 }
 
