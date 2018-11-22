@@ -1,9 +1,8 @@
 .messageList{
   width: 100%;
+  display: block;
+  float: left;
   list-style: none;
-  top: 56px;
-  flex-direction: column;
-  overflow: auto;
 }
 
 .my{

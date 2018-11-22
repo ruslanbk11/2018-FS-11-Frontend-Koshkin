@@ -20,15 +20,8 @@ class InputForm extends Component{
       minute: 'numeric'
   };
 
-  newMessage = {
-    id: '',
-    author: "Me",
-    text: '',
-    time: ''
-  }
-
-  handleAttach = (input) => {
-    const files = input.target.files
+  handleAttach = (event) => {
+    const files = event.target.files
     this.files = []
     for (let i = 0; i< files.length; i++) {
       let file = files[i]
@@ -59,8 +52,7 @@ class InputForm extends Component{
     })
   }
 
-  handleInput = (e) => {
-    e.preventDefault();
+  handleInput = () => {
     var input = document.getElementById('input')
     if (input.value.length > 0){
       this.setState({
@@ -71,18 +63,18 @@ class InputForm extends Component{
         withMessage: false
       })
     }
-    this.newMessage = {
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    var input = document.getElementById('input')
+    const newMessage = {
       id: this.state.count,
       author: "Me",
       text: input.value,
       time: (new Date()).toLocaleString('ru', this.options)
     }
-
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.onNewMessage(this.newMessage);
+    this.props.onNewMessage(newMessage);
     this.setState({
       withMessage: false,
       count: this.state.count + 1
@@ -90,12 +82,11 @@ class InputForm extends Component{
   }
 
   render () {
-    const onNewMessage = this.props.onNewMessage
     const input_class = this.state.withMessage ? 'input_with_message' : 'input_without'
     const input = <input type='text' id='input' className={input_class} onInput={this.handleInput} placeholder='Введите сообщение'/>
     const sendElement = (
       <div onClick={this.handleClick} className='send'>
-        <img onClick={onNewMessage.bind(this, this.newMessage)} src={sendImg} className='sendImg' alt='send'/>
+        <img onClick={this.handleSubmit} src={sendImg} className='sendImg' alt='send'/>
       </div>
     )
     const send = this.state.withMessage && sendElement
