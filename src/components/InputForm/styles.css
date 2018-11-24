@@ -1,0 +1,43 @@
+.form{
+  border-top: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 56px;
+}
+
+.invisible {
+  display: none;
+}
+
+.input_without{
+  border: 0px;
+  display: flex;
+  background-color: white;
+  width: 90%;
+  font-size: 20px;
+}
+
+.input_with_message{
+  border: 0px;
+  display: flex;
+  background-color: white;
+  bottom: 0;
+  width: 80%;
+  font-size: 20px;
+}
+
+.send{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  width: 10%;
+}
+
+.attach{
+  display: flex;
+  cursor: pointer;
+  background-color: white;
+  justify-content: center;
+  width: 10%;
+}
