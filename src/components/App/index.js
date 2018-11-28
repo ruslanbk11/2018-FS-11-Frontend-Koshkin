@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import MessageList from '../MessageList'
 import InputForm from '../InputForm'
+//import ChatList from '../ChatList'
 import messages from '../../fixtures'
+//import chats from '../../chats'
 import avatar from '../../static/avatar.png'
 import menu from '../../static/menu.png'
 import search from '../../static/search.png'
@@ -23,10 +25,10 @@ class App extends Component {
               <img src={search} alt='search' className='search'/>
             </div>
           <Link to='/list_chats/chat_id=1' className='link'>
-          <div className='list_chats'>
-            <img src={avatar} alt='avatar' className='avatar' />
-            Chuck
-          </div>
+            <div className='list_chats'>
+              <img src={avatar} alt='avatar' className='avatar' />
+              Chuck
+            </div>
           </Link>
         </div>
     )
@@ -39,7 +41,7 @@ class App extends Component {
           <img src={search} alt='search' className='search'/>
           <img src={more} alt='more' className='more'/>
         </div>
-        <div className='container'>
+        <div className='container' id='container'>
           <MessageList messages={this.state.mssgs}/>
         </div>
         <div className='inputForm'>
