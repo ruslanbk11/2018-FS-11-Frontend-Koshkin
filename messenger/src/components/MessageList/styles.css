@@ -1,12 +1,12 @@
 .messageList{
+  padding-inline-start: 0px;
   width: 100%;
-  display: block;
-  float: left;
   list-style: none;
 }
 
 .my{
   display: flex;
+  margin-right: 10px;
   align-items: flex-end;
   justify-content: flex-end;
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Message from '../Message'
+//import InputForm from '../InputForm'
 import './styles.css'
 
 export default function MessageList ({ messages }) {
