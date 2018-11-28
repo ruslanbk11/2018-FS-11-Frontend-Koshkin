@@ -22,10 +22,12 @@ class App extends Component {
               <h1 className='title'>Messenger</h1>
               <img src={search} alt='search' className='search'/>
             </div>
+          <Link to='/list_chats/chat_id=1' className='link'>
           <div className='list_chats'>
             <img src={avatar} alt='avatar' className='avatar' />
-            <Link to='/list_chats/chat_id=1' className='link'>Chuck</Link>
+            Chuck
           </div>
+          </Link>
         </div>
     )
 
