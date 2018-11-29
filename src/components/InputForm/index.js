@@ -74,11 +74,15 @@ class InputForm extends Component{
       text: input.value,
       time: (new Date()).toLocaleString('ru', this.options)
     }
-    this.props.onNewMessage(newMessage);
-    this.setState({
-      withMessage: false,
-      count: this.state.count + 1
+    if (input.value !== '') {
+      this.props.onNewMessage(newMessage);
+      this.setState({
+        withMessage: false,
+        count: this.state.count + 1
     })
+    var container = document.getElementById('container')
+    container.scrollTop = container.scrollHeight - container.offsetHeight
+  }
   }
 
   render () {

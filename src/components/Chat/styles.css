@@ -1,0 +1,44 @@
+.chat{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 76px;
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.avatar{
+  width: 56px;
+  height: 56px;
+  margin: 10px;
+  border-radius: 28px;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: row;
+}
+
+.topic, .info{
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info{
+  width: 10%;
+}
+
+.topic{
+  text-decoration: none;
+  color: black;
+  width:80%;
+}
+
+.author{
+  font-size: 24px;
+}
+
+a{
+  text-decoration: none;
+}
