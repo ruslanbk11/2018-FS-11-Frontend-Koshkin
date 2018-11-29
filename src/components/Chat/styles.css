@@ -19,6 +19,15 @@
   flex-direction: row;
 }
 
+.new_messages{
+  background-color: #8e24aa;
+  color: white;
+  width: 15px;
+  heigth: 15px;
+  padding-left: 6px;
+  border-radius: 6px;
+}
+
 .topic, .info{
   margin: 16px;
   display: flex;
@@ -26,6 +35,9 @@
 }
 
 .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 10%;
 }
 
@@ -35,7 +47,7 @@
   width:80%;
 }
 
-.author{
+content.author{
   font-size: 24px;
 }
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import MessageList from '../MessageList'
 import InputForm from '../InputForm'
 import ChatList from '../ChatList'
+
 import messages from '../../fixtures'
 import chats from '../../chats'
 import menu from '../../static/menu.png'
@@ -10,6 +11,7 @@ import search from '../../static/search.png'
 import back from '../../static/arrow_back.png'
 import more from  '../../static/more_vert.png'
 import './styles.css'
+
 
 class App extends Component {
     state = {
