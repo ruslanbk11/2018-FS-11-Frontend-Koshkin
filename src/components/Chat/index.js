@@ -18,12 +18,16 @@ class Chat extends Component {
     return (
 
       <div className='chat'>
-        <img src={avatar} alt='avatar' className='avatar' />
-        <div className='topic'>
-          <h2 className='author'>{this.state.author}</h2>
-          <h3 className='last_message_content'>{this.state.last_message_content}</h3>
+        <div className='userInfo'>
+          <div className='userAvatar'>
+            <img src={avatar} alt='avatar' className='avatar' />
+          </div>
+          <div className='topic'>
+            <content className='author'>{this.state.author}</content>
+            <content className='last_message_content'>{this.state.last_message_content}</content>
+          </div>
         </div>
-        <div>
+        <div className='info'>
           <div className='time'>{this.state.last_message_added_at}</div>
           <div className='new_messages'>{this.state.new_messages}</div>
         </div>

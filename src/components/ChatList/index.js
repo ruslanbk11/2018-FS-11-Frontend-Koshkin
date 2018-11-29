@@ -10,9 +10,19 @@ export default function ChatList ({ chats }) {
       </li>
     )
   )
+  
+  const linkElements = [];
+  for(var i = 0; i < chats.length; i++){
+    var link = '/list_chats/chat_id='+chats[i].id
+
+    linkElements.push((
+      <Link to={link}>{chatElements[i]}</Link>
+    ))
+  }
+
   return (
     <ul className='chatList'>
-      {chatElements}
+      {linkElements}
     </ul>
   )
 }

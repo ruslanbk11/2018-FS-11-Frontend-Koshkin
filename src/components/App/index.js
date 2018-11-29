@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import MessageList from '../MessageList'
 import InputForm from '../InputForm'
-//import ChatList from '../ChatList'
+import ChatList from '../ChatList'
 import messages from '../../fixtures'
-//import chats from '../../chats'
-import avatar from '../../static/avatar.png'
+import chats from '../../chats'
 import menu from '../../static/menu.png'
 import search from '../../static/search.png'
 import back from '../../static/arrow_back.png'
@@ -24,12 +23,7 @@ class App extends Component {
               <h1 className='title'>Messenger</h1>
               <img src={search} alt='search' className='search'/>
             </div>
-          <Link to='/list_chats/chat_id=1' className='link'>
-            <div className='list_chats'>
-              <img src={avatar} alt='avatar' className='avatar' />
-              Chuck
-            </div>
-          </Link>
+            <ChatList chats={chats}/>
         </div>
     )
 
@@ -50,11 +44,30 @@ class App extends Component {
       </div>
     )
 
+
+        ChatWithJen = () => (
+          <div className='window'>
+            <div className='header'>
+              <Link to='/'><img src={back} alt='back' className='back' /></Link>
+              <h1 className='title'>Jennifer</h1>
+              <img src={search} alt='search' className='search'/>
+              <img src={more} alt='more' className='more'/>
+            </div>
+            <div className='container' id='container'>
+              <MessageList messages={this.state.mssgs}/>
+            </div>
+            <div className='inputForm'>
+              <InputForm onNewMessage={this.handleNewMessage}/>
+            </div>
+          </div>
+        )
+
     render (){
         return (
           <Router>
             <div>
-              <Route path='/list_chats/chat_id=1' component={this.Chat}/>
+              <Route path='/list_chats/chat_id=000' component={this.Chat}/>
+              <Route path='/list_chats/chat_id=001' component={this.ChatWithJen}/>
               <Route path='/' exact component={this.ChatList}/>
             </div>
           </Router>
