@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import MessageList from '../MessageList'
 import InputForm from '../InputForm'
@@ -48,22 +47,22 @@ class App extends Component {
     )
 
 
-        ChatWithJen = () => (
-          <div className='window'>
-            <div className='header'>
-              <Link to='/'><img src={back} alt='back' className='back' /></Link>
-              <h1 className='title'>Jennifer</h1>
-              <img src={search} alt='search' className='search'/>
-              <img src={more} alt='more' className='more'/>
-            </div>
-            <div className='container' id='container'>
-              <MessageList messages={this.state.mssgs}/>
-            </div>
-            <div className='inputForm'>
-              <InputForm onNewMessage={this.handleNewMessage}/>
-            </div>
-          </div>
-        )
+        // ChatWithJen = () => (
+        //   <div className='window'>
+        //     <div className='header'>
+        //       <Link to='/'><img src={back} alt='back' className='back' /></Link>
+        //       <h1 className='title'>Jennifer</h1>
+        //       <img src={search} alt='search' className='search'/>
+        //       <img src={more} alt='more' className='more'/>
+        //     </div>
+        //     <div className='container' id='container'>
+        //       <MessageList messages={this.state.mssgs}/>
+        //     </div>
+        //     <div className='inputForm'>
+        //       <InputForm onNewMessage={this.handleNewMessage}/>
+        //     </div>
+        //   </div>
+        // )
 
 
     render (){
@@ -71,7 +70,6 @@ class App extends Component {
           <Router>
             <div>
               <Route path='/list_chats/chat_id=000' component={this.Chat}/>
-              <Route path='/list_chats/chat_id=001' component={this.ChatWithJen}/>
               <Route path='/' exact component={this.ChatList}/>
             </div>
           </Router>
@@ -91,3 +89,4 @@ class App extends Component {
 }
 
 export default App
+// <Route path='/list_chats/chat_id=001' component={this.ChatWithJen}/>

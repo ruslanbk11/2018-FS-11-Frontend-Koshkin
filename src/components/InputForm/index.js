@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './styles.css'
 import attachImg from '../../static/attachment_24_px.png'
 import sendImg from '../../static/send_24_px.png'
+import store from '../../index'
 
 class InputForm extends Component{
   constructor(props){
@@ -68,21 +69,24 @@ class InputForm extends Component{
   handleSubmit = (event) => {
     event.preventDefault();
     var input = document.getElementById('input')
-    const newMessage = {
-      id: this.state.count,
-      author: "Me",
-      text: input.value,
-      time: (new Date()).toLocaleString('ru', this.options)
-    }
     if (input.value !== '') {
-      this.props.onNewMessage(newMessage);
+      // store.dispatch({
+      //   type: 'SEND_MESSAGE',
+      //   payload: {
+      //     author: 'Me',
+      //     text: input.value,
+      //     content: null,
+      //     time: (new Date()).toLocaleString('ru', this.options)
+      //   }
+      // })
+      // input.value = ''
       this.setState({
         withMessage: false,
         count: this.state.count + 1
-    })
+      })
+    }
     var container = document.getElementById('container')
     container.scrollTop = container.scrollHeight - container.offsetHeight
-  }
   }
 
   render () {
@@ -95,7 +99,7 @@ class InputForm extends Component{
     )
     const send = this.state.withMessage && sendElement
     return (
-      <form className='form' onSubmit={this.handleSubmit}>
+      <form className='form' onSubmit={this.props.onInput}>
         {input}
         <label className='attach' >
           <label className='invisible'>
@@ -109,4 +113,24 @@ class InputForm extends Component{
   }
 }
 
+const mapStateToProps = (state) => {
+
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInput: () => {
+      var input = document.getElementById('input')
+      dispatch({
+      type: 'SEND_MESSAGE',
+      payload: {
+        author: 'Me',
+        text: input.value,
+        content: null,
+        time: (new Date()).toLocaleString('ru', this.options)
+      }
+  })
+}
+}
+}
 export default InputForm
