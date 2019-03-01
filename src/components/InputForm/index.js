@@ -2,14 +2,19 @@ import React, { Component } from 'react'
 import './styles.css'
 import attachImg from '../../static/attachment_24_px.png'
 import sendImg from '../../static/send_24_px.png'
-import store from '../../index'
+import { connect } from 'react-redux'
+
+const options = {
+    hour: 'numeric',
+    minute: 'numeric'
+};
 
 class InputForm extends Component{
   constructor(props){
     super(props)
 
     this.state = {
-      withMessage: false,
+      withMessage: true,
       count: 0,
       value: ''
     }
@@ -21,81 +26,14 @@ class InputForm extends Component{
       minute: 'numeric'
   };
 
-  handleAttach = (event) => {
-    const files = event.target.files
-    this.files = []
-    for (let i = 0; i< files.length; i++) {
-      let file = files[i]
-      if (file.type === ('image/png') || file.type === ('image/jpeg') || file.type === ('image/gif')) {
-        this.files.push(<img key={this.state.count + i} src={URL.createObjectURL(file)} alt='attached_img'/>)
-      } else {
-        this.files.push(<a key={this.state.count + i} href={URL.createObjectURL(file)}>{file.name}</a>)
-      }
-    }
-    let newMessage = {
-      id: this.state.count,
-      author: "Me",
-      content: this.files,
-      text: '',
-      time: (new Date()).toLocaleString('ru', this.options)
-    }
-    console.log(this.files)
-    this.props.onNewMessage(newMessage);
-    this.setState({
-      count: this.state.count + 1 + files.length
-    })
-  }
-
-  handleClick = () => {
-    this.setState({
-      withMessage: false,
-      count: this.state.count + 1
-    })
-  }
-
-  handleInput = () => {
-    var input = document.getElementById('input')
-    if (input.value.length > 0){
-      this.setState({
-        withMessage: true
-      })
-    } else {
-      this.setState({
-        withMessage: false
-      })
-    }
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    var input = document.getElementById('input')
-    if (input.value !== '') {
-      // store.dispatch({
-      //   type: 'SEND_MESSAGE',
-      //   payload: {
-      //     author: 'Me',
-      //     text: input.value,
-      //     content: null,
-      //     time: (new Date()).toLocaleString('ru', this.options)
-      //   }
-      // })
-      // input.value = ''
-      this.setState({
-        withMessage: false,
-        count: this.state.count + 1
-      })
-    }
-    var container = document.getElementById('container')
-    container.scrollTop = container.scrollHeight - container.offsetHeight
-  }
 
   render () {
     const input_class = this.state.withMessage ? 'input_with_message' : 'input_without'
-    const input = <input type='text' id='input' className={input_class} onInput={this.handleInput} placeholder='Введите сообщение'/>
+    const input = <input type='text' id='input' className={input_class} placeholder='Введите сообщение'/>
     const sendElement = (
-      <div onClick={this.handleClick} className='send'>
-        <img onClick={this.handleSubmit} src={sendImg} className='sendImg' alt='send'/>
-      </div>
+      <label className='send'>
+        <button onClick={this.props.onInput} className='sendImg' alt='send'/>
+      </label>
     )
     const send = this.state.withMessage && sendElement
     return (
@@ -103,9 +41,9 @@ class InputForm extends Component{
         {input}
         <label className='attach' >
           <label className='invisible'>
-            <input type='file' onChange={this.handleAttach} multiple />
+            <input type='file' onChange={this.props.onFileInput} multiple />
           </label>
-          <img src={attachImg} className='attachImg' alt='attach' />
+          <button className='attachImg' alt='attach' />
         </label>
         {send}
       </form>
@@ -113,24 +51,52 @@ class InputForm extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
-
-}
+// const mapStateToProps = (state) => {
+//
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInput: () => {
+    onInput: (event) => {
+      event.preventDefault()
       var input = document.getElementById('input')
       dispatch({
-      type: 'SEND_MESSAGE',
-      payload: {
-        author: 'Me',
-        text: input.value,
-        content: null,
-        time: (new Date()).toLocaleString('ru', this.options)
+        type: 'SEND_MESSAGE',
+        payload: {
+          id: new Date(),
+          author: 'Me',
+          text: input.value,
+          content: null,
+          time: (new Date()).toLocaleString('ru', options)
+        }
+      })
+      input.value = ''
+    },
+    onFileInput: (event) => {
+      const files = event.target.files
+      const f = []
+      for (let i = 0; i< files.length; i++) {
+        let file = files[i]
+        if (file.type === ('image/png') || file.type === ('image/jpeg') || file.type === ('image/gif')) {
+          f.push(<img key={new Date()} src={URL.createObjectURL(file)} alt='attached_img'/>)
+        } else {
+          f.push(<a key={new Date()} href={URL.createObjectURL(file)}>{file.name}</a>)
+        }
       }
-  })
+      dispatch({
+        type: 'SEND_MESSAGE',
+        payload: {
+          id: new Date(),
+          author: "Me",
+          content: f,
+          text: '',
+          time: (new Date()).toLocaleString('ru', options)
+        }
+      })
+    }
+  }
 }
-}
-}
-export default InputForm
+
+
+
+export default connect(null, mapDispatchToProps)(InputForm)

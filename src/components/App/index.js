@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect, Switch} from 'react-router-dom'
 import MessageList from '../MessageList'
 import InputForm from '../InputForm'
 import ChatList from '../ChatList'
+import Auth from '../Auth';
+import {connect} from "react-redux";
+import * as actions from '../../store/actions';
 
 import messages from '../../fixtures'
-import chats from '../../chats'
 import menu from '../../static/menu.png'
 import search from '../../static/search.png'
 import back from '../../static/arrow_back.png'
@@ -25,20 +27,20 @@ class App extends Component {
               <h1 className='title'>Messenger</h1>
               <img src={search} alt='search' className='search'/>
             </div>
-            <ChatList chats={chats}/>
+            <ChatList />
         </div>
     )
 
     Chat = () => (
       <div className='window'>
         <div className='header'>
-          <Link to='/'><img src={back} alt='back' className='back' /></Link>
+          <Link to='/list_chats'><img src={back} alt='back' className='back' /></Link>
           <h1 className='title'>Chuck</h1>
           <img src={search} alt='search' className='search'/>
           <img src={more} alt='more' className='more'/>
         </div>
         <div className='container' id='container'>
-          <MessageList messages={this.state.mssgs}/>
+          <MessageList />
         </div>
         <div className='inputForm'>
           <InputForm onNewMessage={this.handleNewMessage}/>
@@ -46,47 +48,82 @@ class App extends Component {
       </div>
     )
 
-
-        // ChatWithJen = () => (
-        //   <div className='window'>
-        //     <div className='header'>
-        //       <Link to='/'><img src={back} alt='back' className='back' /></Link>
-        //       <h1 className='title'>Jennifer</h1>
-        //       <img src={search} alt='search' className='search'/>
-        //       <img src={more} alt='more' className='more'/>
-        //     </div>
-        //     <div className='container' id='container'>
-        //       <MessageList messages={this.state.mssgs}/>
-        //     </div>
-        //     <div className='inputForm'>
-        //       <InputForm onNewMessage={this.handleNewMessage}/>
-        //     </div>
-        //   </div>
-        // )
-
+    componentDidMount() {
+      this.props.onTryAutoLogin();
+    }
 
     render (){
-        return (
-          <Router>
-            <div>
-              <Route path='/list_chats/chat_id=000' component={this.Chat}/>
-              <Route path='/' exact component={this.ChatList}/>
+      console.log('inside render',this.props.isAuthed)
+
+      let MainPage = () => (
+        <div className='mainPage'>
+          <div>
+            <h1>Messenger</h1>
+            <div className='links'>
+              <Link to='/login'><label className='login'>Log in</label></Link>
             </div>
+          </div>
+        </div>
+      )
+
+      let routes = (
+        <div>
+          <Switch>
+            <Route path='/' exact component={MainPage}/>
+            <Route path='/login' exact component={Auth}/>
+            <Redirect to='/' />
+          </Switch>
+        </div>
+      )
+
+      if (this.props.isAuthed){
+        MainPage = () => (
+          <div className='mainPage'>
+            <div>
+              <h1>Messenger</h1>
+              <div className='links'>
+                <Link to='/login'><label className='login'>Log in</label></Link>
+                <Link to='/list_chats'><label className='login'>Chats</label></Link>
+              </div>
+            </div>
+          </div>
+        )
+        routes = (
+          <div>
+            <Switch>
+              <Route path='/' exact component={MainPage}/>
+              <Route path='/list_chats/chat_id=000' component={this.Chat}/>
+              <Route path='/list_chats' exact component={this.ChatList}/>
+              <Route path='/login' exact component={Auth}/>
+              <Redirect to='/' />
+            </Switch>
+          </div>
+        )
+
+      }
+
+
+
+      return (
+          <Router>
+            {routes}
           </Router>
         )
     }
-
-    handleNewMessage = (newMessage) => {
-      var input = document.getElementById('input')
-      const arr = this.state.mssgs
-      console.log('heh')
-      arr.push(newMessage)
-      this.setState({
-        mssgs: arr
-      })
-      input.value = ''
-    }
 }
 
-export default App
-// <Route path='/list_chats/chat_id=001' component={this.ChatWithJen}/>
+const mapStateToProps = state => {
+  console.log('inside maptoState', state.token)
+  return {
+    isAuthed: state.token !== null,
+  }
+};
+
+const initMapDispatchToProps = dispatch => {
+  return {
+    onTryAutoLogin: () => dispatch(actions.authCheckState()),
+  }
+};
+
+export default connect(mapStateToProps, initMapDispatchToProps)(App);
+// export default App
