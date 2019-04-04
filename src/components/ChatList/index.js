@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Chat from '../Chat'
-import './styles.css'
+import styles from './ChatList.css'
 import {connect} from 'react-redux'
 
 class ChatList extends Component {
@@ -21,7 +21,7 @@ class ChatList extends Component {
     }
 
     return (
-      <ul className='chatList'>
+      <ul className={styles.chatList}>
         {linkElements}
       </ul>
     )

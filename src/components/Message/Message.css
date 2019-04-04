@@ -13,6 +13,25 @@
   min-height: min-content;
   min-width: min-content;
   max-width: 75%;
+  animation: go-left-right ease-out 3s;
+}
+
+@keyframes go-right-left {
+  from {
+    transform: translateX(100%)
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes go-left-right {
+  from {
+    transform: translateX(-100%)
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
 .not_my_message{
@@ -30,6 +49,7 @@
   min-height: min-content;
   min-width: min-content;
   max-width: 75%;
+  animation: go-right-left ease-out 3s;
 }
 
 .not_my_message > div.time {

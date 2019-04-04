@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import './styles.css'
-import attachImg from '../../static/attachment_24_px.png'
-import sendImg from '../../static/send_24_px.png'
+import styles from './InputForm.css'
+import EmojiBar from '../EmojiBar'
 import { connect } from 'react-redux'
 
 const options = {
@@ -28,22 +27,24 @@ class InputForm extends Component{
 
 
   render () {
-    const input_class = this.state.withMessage ? 'input_with_message' : 'input_without'
+    const input_class = this.state.withMessage ? styles.input_with_message : styles.input_without
     const input = <input type='text' id='input' className={input_class} placeholder='Введите сообщение'/>
     const sendElement = (
-      <label className='send'>
-        <button onClick={this.props.onInput} className='sendImg' alt='send'/>
+      <label className={styles.send}>
+        <button onClick={this.props.onInput} className={styles.sendImg} alt='send'/>
       </label>
     )
-    const send = this.state.withMessage && sendElement
+    console.log(input_class)
+    const send = this.state.withMessage && sendElement;
     return (
-      <form className='form' onSubmit={this.props.onInput}>
+      <form className={styles.form} onSubmit={this.props.onInput}>
+        <EmojiBar />
         {input}
-        <label className='attach' >
-          <label className='invisible'>
+        <label className={styles.attach} >
+          <label className={styles.invisible}>
             <input type='file' onChange={this.props.onFileInput} multiple />
           </label>
-          <button className='attachImg' alt='attach' />
+          <button className={styles.attachImg} alt='attach' />
         </label>
         {send}
       </form>
@@ -60,6 +61,7 @@ const mapDispatchToProps = (dispatch) => {
     onInput: (event) => {
       event.preventDefault()
       var input = document.getElementById('input')
+      if (input.value !== ''){
       dispatch({
         type: 'SEND_MESSAGE',
         payload: {
@@ -69,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
           content: null,
           time: (new Date()).toLocaleString('ru', options)
         }
-      })
+      })}
       input.value = ''
     },
     onFileInput: (event) => {
@@ -77,6 +79,7 @@ const mapDispatchToProps = (dispatch) => {
       const f = []
       for (let i = 0; i< files.length; i++) {
         let file = files[i]
+        console.log(URL.createObjectURL(file))
         if (file.type === ('image/png') || file.type === ('image/jpeg') || file.type === ('image/gif')) {
           f.push(<img key={new Date()} src={URL.createObjectURL(file)} alt='attached_img'/>)
         } else {

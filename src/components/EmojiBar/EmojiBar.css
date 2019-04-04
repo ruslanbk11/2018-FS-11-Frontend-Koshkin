@@ -1,0 +1,93 @@
+.emojiButton:hover .keyboard{
+    display: flex;
+    height: 50px;
+    width: 300px;
+    z-index: 5;
+    position: absolute;
+    bottom: 80px;
+    animation: pulse 1s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+.emojiButton {
+  background: url('../../static/ugar.png?sprite');
+  background-size: 100%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+   display: inline-flex;
+   align-items: center;
+}
+
+.keyboard{
+  display: none;
+   height: 36px;
+   width: 300px;
+}
+
+.hlop{
+  background: url('../../static/hlop.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.kach{
+  background: url('../../static/kach.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.petuhi{
+  background: url('../../static/petuhi.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.krest{
+  background: url('../../static/krest.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.kaif{
+  background: url('../../static/kaif.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.ugar{
+  background: url('../../static/ugar.png?sprite');
+  background-size: 100%;
+  height: 50px;
+  width: 50px;
+}

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import Message from '../Message'
-import './styles.css'
+import styles from './MessageList.css'
 import { connect } from 'react-redux'
 
 class MessageList extends Component{
 
     render(){
       const messageElements = this.props.msg.map(message =>
-           <li key = {message.id} className={(message.author === 'Me') ? 'my' : 'not_my'}>
+           <li key = {message.id} className={(message.author === 'Me') ? styles.my : styles.not_my}>
              <Message message = {message} defaultMy = {message.author === 'Me'}/>
            </li>
        )
       //console.log(this.props.msg);
       return (
-      <ul className='messageList'>
+      <ul className={styles.messageList}>
         {messageElements}
       </ul>
     )

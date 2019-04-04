@@ -12,8 +12,7 @@ import menu from '../../static/menu.png'
 import search from '../../static/search.png'
 import back from '../../static/arrow_back.png'
 import more from  '../../static/more_vert.png'
-import './styles.css'
-
+import styles from './App.css'
 
 class App extends Component {
     state = {
@@ -22,29 +21,29 @@ class App extends Component {
 
     ChatList = () => (
          <div>
-            <div className='header'>
-              <img src={menu} alt='menu' className='menu' />
-              <h1 className='title'>Messenger</h1>
-              <img src={search} alt='search' className='search'/>
+            <div className={styles.header}>
+              <img src={menu} alt='menu' className={styles.menu} />
+              <h1 className={styles.title}>Messenger</h1>
+              <img src={search} alt='search' className={styles.search}/>
             </div>
             <ChatList />
         </div>
     )
 
     Chat = () => (
-      <div className='window'>
-        <div className='header'>
-          <Link to='/list_chats'><img src={back} alt='back' className='back' /></Link>
-          <h1 className='title'>Chuck</h1>
-          <img src={search} alt='search' className='search'/>
-          <img src={more} alt='more' className='more'/>
+      <div className={styles.window}>
+        <div className={styles.header}>
+          <Link to='/list_chats'><img src={back} alt='back' className={styles.back} /></Link>
+          <h1 className={styles.title}>Chuck</h1>
+          <img src={search} alt='search' className={styles.search}/>
+          <img src={more} alt='more' className={styles.more}/>
         </div>
-        <div className='container' id='container'>
+        <div className={styles.container} id='container'>
           <MessageList />
         </div>
-        <div className='inputForm'>
-          <InputForm onNewMessage={this.handleNewMessage}/>
-        </div>
+          <div className={styles.inputForm}>
+            <InputForm onNewMessage={this.handleNewMessage}/>
+          </div>
       </div>
     )
 
@@ -56,11 +55,11 @@ class App extends Component {
       console.log('inside render',this.props.isAuthed)
 
       let MainPage = () => (
-        <div className='mainPage'>
+        <div className={styles.mainPage}>
           <div>
             <h1>Messenger</h1>
-            <div className='links'>
-              <Link to='/login'><label className='login'>Log in</label></Link>
+            <div className={styles.links}>
+              <Link to='/login'><label className={styles.login}>Log in</label></Link>
             </div>
           </div>
         </div>
@@ -78,12 +77,12 @@ class App extends Component {
 
       if (this.props.isAuthed){
         MainPage = () => (
-          <div className='mainPage'>
+          <div className={styles.mainPage}>
             <div>
               <h1>Messenger</h1>
-              <div className='links'>
-                <Link to='/login'><label className='login'>Log in</label></Link>
-                <Link to='/list_chats'><label className='login'>Chats</label></Link>
+              <div className={styles.links}>
+                <Link to='/login'><label className={styles.login}>Log in</label></Link>
+                <Link to='/list_chats'><label className={styles.login}>Chats</label></Link>
               </div>
             </div>
           </div>

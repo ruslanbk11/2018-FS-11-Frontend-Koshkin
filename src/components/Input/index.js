@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import styles from './Input.css';
 
 const input = props => {
     let inputElement = null;
@@ -26,8 +26,8 @@ const input = props => {
 
 
     return (
-        <div className='Input'>
-            <label className='Label'>{props.label}</label>
+        <div className={styles.Input}>
+            <label className={styles.Label}>{props.label}</label>
             {inputElement}
         </div>
     );

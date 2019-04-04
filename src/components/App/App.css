@@ -73,9 +73,9 @@
 
 .inputForm{
   display: flex;
+  bottom: 0px;
   position: fixed;
   flex-basis: 10%;
-  bottom: 0px;
   height: 10%;
   width: 100%;
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from '../Input';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
-import './styles.css'
+import styles from './Auth.css'
 
 class Auth extends Component {
     state={
@@ -81,10 +81,10 @@ class Auth extends Component {
             />
         });
         return (
-          <div className='loginForm'>
-            <form onSubmit={this.submitHandler} className='lform'>
+          <div className={styles.loginForm}>
+            <form onSubmit={this.submitHandler} className={styles.lform}>
                 {inputs}
-                <button type="submit" className='submitButton'>
+                <button type="submit" className={styles.submitButton}>
                     Войти
                 </button>
             </form>
