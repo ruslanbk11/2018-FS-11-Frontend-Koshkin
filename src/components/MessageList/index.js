@@ -5,9 +5,21 @@ import { connect } from 'react-redux'
 
 class MessageList extends Component{
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({behavior: 'smooth'});
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
     render(){
       const messageElements = this.props.msg.map(message =>
-           <li key = {message.id} className={(message.author === 'Me') ? styles.my : styles.not_my}>
+           <li key = {message.id} className={(message.author === 'Me') ? styles.my : styles.not_my} ref={(el) => { this.messagesEnd = el; }}>
              <Message message = {message} defaultMy = {message.author === 'Me'}/>
            </li>
        )
@@ -19,6 +31,8 @@ class MessageList extends Component{
     )
   }
 }
+
+
 
 const mapStateToProps = (state) => {
   return({
