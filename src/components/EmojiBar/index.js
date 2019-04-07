@@ -48,22 +48,12 @@ const options = {
 const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
-      event.preventDefault()
-      console.log(event.target.id);
-      var element = document.getElementById(event.target.id),
-          style = window.getComputedStyle(element),
-          background = style.getPropertyValue('background');
-      var parts = background.split('url(');
-      parts = parts[1].split(')');
-      var url = parts[0];
-      console.log('ururur', url)
+      event.preventDefault();
       var f = [];
-
-      f.push(<img alt={new Date()}/>)
+      f.push(<label className={event.target.className}/>)
       dispatch({
         type: 'SEND_EMOJI',
         payload: {
-          class: event.target.className,
           id: new Date(),
           author: 'Me',
           text: '',
