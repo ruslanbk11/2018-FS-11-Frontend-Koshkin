@@ -55,16 +55,13 @@ const reducer = (state = initialState, action) => {
 
   if (action.type === 'SEND_EMOJI') {
     let newMessages = [...state.messages];
-    console.log('yuhu', action.payload.content)
     let payload = action.payload;
     newMessages.push(payload);
     let newChats = [...state.chats];
-    newChats[0].last_message_content = action.payload.text;
-    newChats[0].last_message_added_at = action.payload.time;
+    newChats[0].last_message_content = payload.text;
+    newChats[0].last_message_added_at = payload.time;
     newChats[0].unread_messages = null;
     newChats[0].mine_last = true;
-
-    console.log(newChats);
     return {
       ...state,
       messages: newMessages,
