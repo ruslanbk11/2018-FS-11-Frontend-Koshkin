@@ -14,7 +14,7 @@ class ChatList extends Component {
     )
     const linkElements = [];
     for(let i = 0; i < this.props.chats.length; i++){
-      let link = '/list_chats/chat_id='+this.props.chats[i].id
+      let link = `/list_chats/chat_id=${this.props.chats[i].id}`
       linkElements.push((
         <Link onClick={this.props.onClick} key={i} to={link}>{chatElements[i]}</Link>
       ))
