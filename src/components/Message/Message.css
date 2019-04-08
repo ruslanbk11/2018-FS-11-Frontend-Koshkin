@@ -13,6 +13,25 @@
   min-height: min-content;
   min-width: min-content;
   max-width: 75%;
+  animation: go-left-right ease-out 0.3s;
+}
+
+@keyframes go-right-left {
+  from {
+    transform: translateX(50%)
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes go-left-right {
+  from {
+    transform: translateX(-50%)
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 
 .not_my_message{
@@ -30,12 +49,13 @@
   min-height: min-content;
   min-width: min-content;
   max-width: 75%;
+  animation: go-right-left ease-out 0.3s;
 }
 
 .not_my_message > div.time {
 }
 
-.author{
+section.author{
   margin-top: 5px;
   margin-right: 5px;
   font-style: italic;
