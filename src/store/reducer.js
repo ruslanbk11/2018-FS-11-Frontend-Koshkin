@@ -35,25 +35,9 @@ const authFail = (state, action) => {
     }
 };
 
-const reducer = (state = initialState, action) => {
-  if (action.type === 'SEND_MESSAGE') {
+const reducer = (state = initialState, {type, payload}) => {
+  if (type === 'SEND_MESSAGE') {
     let newMessages = [...state.messages];
-    newMessages.push(action.payload);
-    let newChats = [...state.chats];
-    newChats[0].last_message_content = action.payload.text;
-    newChats[0].last_message_added_at = action.payload.time;
-    newChats[0].unread_messages = null;
-    newChats[0].mine_last = true;
-    return {
-      ...state,
-      messages: newMessages,
-      chats: newChats,
-    }
-  }
-
-  if (action.type === 'SEND_EMOJI') {
-    let newMessages = [...state.messages];
-    let payload = action.payload;
     newMessages.push(payload);
     let newChats = [...state.chats];
     newChats[0].last_message_content = payload.text;
@@ -67,7 +51,22 @@ const reducer = (state = initialState, action) => {
     }
   }
 
-  if (action.type === 'READ_MESSAGES') {
+  if (type === 'SEND_EMOJI') {
+    let newMessages = [...state.messages];
+    newMessages.push(payload);
+    let newChats = [...state.chats];
+    newChats[0].last_message_content = payload.text;
+    newChats[0].last_message_added_at = payload.time;
+    newChats[0].unread_messages = null;
+    newChats[0].mine_last = true;
+    return {
+      ...state,
+      messages: newMessages,
+      chats: newChats,
+    }
+  }
+
+  if (type === 'READ_MESSAGES') {
     let newChats = [...state.chats];
     newChats[0].unread_messages = null;
     return {
@@ -75,10 +74,10 @@ const reducer = (state = initialState, action) => {
       chats: newChats,
     }
   }
-  switch (action.type) {
-      case actionTypes.AUTH_START: return authStart(state, action);
-      case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-      case actionTypes.AUTH_FAILED: return authFail(state, action);
+  switch (type) {
+      case actionTypes.AUTH_START: return authStart(state, {type, payload});
+      case actionTypes.AUTH_SUCCESS: return authSuccess(state, {type, payload});
+      case actionTypes.AUTH_FAILED: return authFail(state, {type, payload});
       default: return state;
   }
 }
