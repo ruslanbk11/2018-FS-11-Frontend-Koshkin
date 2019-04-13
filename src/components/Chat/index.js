@@ -10,7 +10,7 @@ class Chat extends Component {
   }
 
   render () {
-    const status = this.props.chat.mine_last ? 'v' : this.state.unread_messages
+    let status = this.props.chat.mine_last ? 'v' : this.state.unread_messages
     return (
       <div className={styles.chat}>
         <div className={styles.userInfo}>

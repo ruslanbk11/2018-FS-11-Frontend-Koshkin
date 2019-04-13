@@ -52,8 +52,6 @@ class App extends Component {
     }
 
     render (){
-      console.log('inside render',this.props.isAuthed)
-
       let MainPage = () => (
         <div className={styles.mainPage}>
           <div>
@@ -101,8 +99,6 @@ class App extends Component {
 
       }
 
-
-
       return (
           <Router>
             {routes}
@@ -112,7 +108,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('inside maptoState', state.token)
   return {
     isAuthed: state.token !== null,
   }
@@ -125,4 +120,3 @@ const initMapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, initMapDispatchToProps)(App);
-// export default App

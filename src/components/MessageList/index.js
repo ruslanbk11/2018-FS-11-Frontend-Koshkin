@@ -23,7 +23,6 @@ class MessageList extends Component{
              <Message message = {message} defaultMy = {message.author === 'Me'}/>
            </li>
        )
-      //console.log(this.props.msg);
       return (
       <ul className={styles.messageList}>
         {messageElements}
@@ -32,16 +31,10 @@ class MessageList extends Component{
   }
 }
 
-
-
 const mapStateToProps = (state) => {
   return({
     msg: state.messages
   })
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//
-// }
 
 export default connect(mapStateToProps, null)(MessageList);

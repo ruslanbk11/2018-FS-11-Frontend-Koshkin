@@ -7,8 +7,4 @@ export default [
     'unread_messages': 2,
     'mine_last': false,
   },
-  // {
-  //   'id': '001',
-  //   'author': 'Jennifer Ashley'
-  // }
 ]

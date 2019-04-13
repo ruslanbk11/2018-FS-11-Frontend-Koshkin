@@ -27,7 +27,7 @@ class InputForm extends Component{
 
 
   render () {
-    const input_class = this.state.withMessage ? styles.input_with_message : styles.input_without
+    let input_class = this.state.withMessage ? styles.input_with_message : styles.input_without
     const input = <input type='text' id='input' className={input_class} placeholder='Введите сообщение'/>
     const sendElement = (
       <label className={styles.send}>
@@ -35,7 +35,7 @@ class InputForm extends Component{
       </label>
     )
     console.log(input_class)
-    const send = this.state.withMessage && sendElement;
+    let send = this.state.withMessage && sendElement;
     return (
       <form className={styles.form} onSubmit={this.props.onInput}>
         <EmojiBar />
@@ -52,15 +52,11 @@ class InputForm extends Component{
   }
 }
 
-// const mapStateToProps = (state) => {
-//
-// }
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
       event.preventDefault()
-      var input = document.getElementById('input')
+      let input = document.getElementById('input')
       if (input.value !== ''){
       dispatch({
         type: 'SEND_MESSAGE',
@@ -75,8 +71,8 @@ const mapDispatchToProps = (dispatch) => {
       input.value = ''
     },
     onFileInput: (event) => {
-      const files = event.target.files
-      const f = []
+      let files = event.target.files
+      let f = []
       for (let i = 0; i< files.length; i++) {
         let file = files[i]
         console.log(URL.createObjectURL(file))
@@ -99,7 +95,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
-
 
 export default connect(null, mapDispatchToProps)(InputForm)

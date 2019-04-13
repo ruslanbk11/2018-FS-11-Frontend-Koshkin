@@ -26,10 +26,9 @@ const emojis = [
 class EmojiBar extends Component {
 
   render(){
-    const emojiBar = emojis.map((emoji, i) =>
+    let emojiBar = emojis.map((emoji, i) =>
       <span key={i} className={emoji.name} onClick={this.props.onInput} id={i}/>
     )
-    console.log(emojiBar)
     return (
       <label className={styles.emojiButton}>
         <div className={styles.keyboard}>
@@ -49,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
       event.preventDefault();
-      var f = [];
+      let f = [];
       f.push(<label className={event.target.className}/>)
       dispatch({
         type: 'SEND_EMOJI',
