@@ -24,7 +24,6 @@ const input = props => {
             break;
     }
 
-
     return (
         <div className={styles.Input}>
             <label className={styles.Label}>{props.label}</label>
