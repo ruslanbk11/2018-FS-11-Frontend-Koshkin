@@ -1,0 +1,19 @@
+.not_zoomed {
+    display: block;
+    margin: 5px;
+    border-radius: 38px;
+    width: 56px;
+    height: 56px;
+}
+
+.zoomed {
+    z-index: 4;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    box-shadow: 3px 3px 8px black
+}

@@ -9,33 +9,19 @@ const options = {
 };
 
 class InputForm extends Component{
-  constructor(props){
-    super(props)
-
-    this.state = {
-      withMessage: true,
-      count: 0,
-      value: ''
-    }
-
-  }
 
   options = {
       hour: 'numeric',
       minute: 'numeric'
   };
 
-
   render () {
-    let input_class = this.state.withMessage ? styles.input_with_message : styles.input_without
-    const input = <input type='text' id='input' className={input_class} placeholder='Введите сообщение'/>
+    const input = <input type='text' id='input' className={styles.input_with_message}  placeholder='Введите сообщение'/>
     const sendElement = (
       <label className={styles.send}>
         <button onClick={this.props.onInput} className={styles.sendImg} alt='send'/>
       </label>
     )
-    console.log(input_class)
-    let send = this.state.withMessage && sendElement;
     return (
       <form className={styles.form} onSubmit={this.props.onInput}>
         <EmojiBar />
@@ -46,7 +32,7 @@ class InputForm extends Component{
           </label>
           <button className={styles.attachImg} alt='attach' />
         </label>
-        {send}
+        {sendElement}
       </form>
     )
   }
