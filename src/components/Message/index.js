@@ -9,8 +9,9 @@ const Message = (props) => {
   };
 
   const isMy = props.defaultMy
-  const message = props.message
+  const { message } = props
   const content = message.content
+  //Если сообщение не принадлежит пользователю, то отобразить элемент с автором
   const author = isMy || <section className='author'>{message.author}</section>
   const message_class = isMy ? styles.my_message : styles.not_my_message
   return (

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styles from './Avatar.css';
 import avatar from '../../static/avatar.png';
 
-export const Avatar = () => {
+export default () => {
 
     const shadowStyle = {
         zIndex: 3,
@@ -20,8 +20,16 @@ export const Avatar = () => {
 
     return (
         <div>
-            {zoomed && <div>{ReactDOM.createPortal(shadowElement, document.body)}</div>}
-            <img onClick={() => setZoomed(!zoomed)} alt="noav" src={avatar} className={zoomed ? styles.zoomed : styles.not_zoomed}></img>
+            {
+              zoomed &&
+              <div>{ReactDOM.createPortal(shadowElement, document.body)}</div>
+            }
+            <img
+              onClick={() => setZoomed(!zoomed)}
+              alt="noav"
+              src={avatar}
+              className={zoomed ? styles.zoomed : styles.not_zoomed}>
+            </img>
         </div>
 
     )
