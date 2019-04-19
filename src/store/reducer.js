@@ -40,13 +40,15 @@ const reducer = (state = initialState, {type, payload}) => {
     let newMessages = [...state.messages];
     newMessages.push(payload);
     let newChats = [...state.chats];
-    newChats[0].last_message_content = payload.text;
+    let newChat = newChats[0];
+    newChat.last_message_content = payload.text;
     if (payload.text === ''){
-      newChats[0].last_message_content = 'Документ';
+      newChat.last_message_content = 'Документ';
     }
-    newChats[0].last_message_added_at = payload.time;
-    newChats[0].unread_messages = null;
-    newChats[0].mine_last = true;
+    newChat.last_message_added_at = payload.time;
+    newChat.unread_messages = null;
+    newChat.mine_last = true;
+    newChats[0] = newChat;
     return {
       ...state,
       messages: newMessages,
@@ -58,10 +60,12 @@ const reducer = (state = initialState, {type, payload}) => {
     let newMessages = [...state.messages];
     newMessages.push(payload);
     let newChats = [...state.chats];
-    newChats[0].last_message_content = 'Emoji';
-    newChats[0].last_message_added_at = payload.time;
-    newChats[0].unread_messages = null;
-    newChats[0].mine_last = true;
+    let newChat = newChats[0];
+    newChat.last_message_content = 'Emoji';
+    newChat.last_message_added_at = payload.time;
+    newChat.unread_messages = null;
+    newChat.mine_last = true;
+    newChats[0] = newChat;
     return {
       ...state,
       messages: newMessages,

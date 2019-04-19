@@ -5,18 +5,8 @@ import avatar from '../../static/avatar.png';
 
 export default () => {
 
-    const shadowStyle = {
-        zIndex: 3,
-        position: 'fixed',
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#222f3e',
-        opacity: 0.5,
-        top: 0,
-};
-
     const [zoomed, setZoomed] = useState(false);
-    const shadowElement = <div style={shadowStyle}></div>;
+    const shadowElement = <div className={styles.shadowStyle}></div>;
 
     return (
         <div>
