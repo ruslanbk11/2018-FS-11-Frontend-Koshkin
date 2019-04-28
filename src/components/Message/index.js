@@ -1,35 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styles from './Message.css'
 
-class Message extends Component {
-  constructor(props){
-    super(props)
+const Message = (props) => {
 
-    this.state = {
-        isMy: props.defaultMy,
-        time: (new Date()).toLocaleString('ru', this.options),
-    }
-  }
-
-  options = {
+  const options = {
       hour: 'numeric',
       minute: 'numeric'
   };
 
-  render () {
-      const message = this.props.message
-      const content = message.content
-      const author = this.state.isMy || <section className='author'>{message.author}</section>
-      const message_class = this.state.isMy ? styles.my_message : styles.not_my_message
-      return (
-          <div className={message_class}>
-              {author}
-              <section className={styles.content}>{message.text}</section>
-              {content}
-              <div className={styles.time}>{this.state.time}</div>
-          </div>
-      )
+  const isMy = props.defaultMy
+  const { message } = props
+  const content = message.content
+  let author;
+  //Если сообщение не принадлежит пользователю, то отобразить элемент с автором
+  if (!isMy) {
+    author = <section className='author'>{message.author}</section>
   }
+  const message_class = isMy ? styles.my_message : styles.not_my_message
+  return (
+      <div className={message_class}>
+          {author}
+          <section className={styles.content}>{message.text}</section>
+          {content}
+          <div className={styles.time}>{(new Date()).toLocaleString('ru', options)}</div>
+      </div>
+  )
 }
 
 export default Message

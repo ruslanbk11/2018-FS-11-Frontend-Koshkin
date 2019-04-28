@@ -7,16 +7,10 @@
   border-bottom: 1px solid gray;
 }
 
-.avatar{
-  width: 56px;
-  height: 56px;
-  margin: 10px;
-  border-radius: 28px;
-}
-
 .userInfo{
   display: flex;
   flex-direction: row;
+  width: 50%;
 }
 
 .new_messages{

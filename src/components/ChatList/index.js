@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Chat from '../Chat'
+import Avatar from '../Avatar'
 import styles from './ChatList.css'
 import {connect} from 'react-redux'
 
@@ -13,12 +14,21 @@ class ChatList extends Component {
       )
     )
     const linkElements = [];
-    for(let i = 0; i < this.props.chats.length; i++){
-      let link = `/list_chats/chat_id=${this.props.chats[i].id}`
+    this.props.chats.map(el => (
       linkElements.push((
-        <Link onClick={this.props.onClick} key={i} to={link}>{chatElements[i]}</Link>
+        <label className={styles.wrapper}>
+          <label className={styles.avatar}>
+            <Avatar />
+          </label>
+          <Link
+            classname={styles.link}
+            onClick={this.props.onClick}
+            key={el.id}
+            to={`/list_chats/chat_id=${el.id}`}
+          >{chatElements[Number(el.id)]}</Link>
+        </label>
       ))
-    }
+    ))
 
     return (
       <ul className={styles.chatList}>
